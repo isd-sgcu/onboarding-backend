@@ -37,8 +37,9 @@ func (c cartImpl) RemoveOrder(itemId int) {
 
 func (c cartImpl) Checkout() int {
 	total := 0
-	for itemId, quantity := range c.orders {
-		total += itemId * quantity
+	for _, quantity := range c.orders { // _ is a blank identifier, it is used to ignore the index
+		// range returns the key, value of map as pairs
+		total += quantity
 	}
 	return total
 }

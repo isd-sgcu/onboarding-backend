@@ -25,9 +25,9 @@ func main() {
 
 	// checkout the cart
 	totalOne := cartOne.Checkout()
-	println("Total one: ", totalOne)
+	println("Total items one:", totalOne)
 
 	totalTwo := cartTwo.Checkout()
-	println(fmt.Sprintf("Total two: %d", totalTwo)) // fmt.Sprintf() is similar to String.format() in Java
+	println(fmt.Sprintf("Total items two: %d", totalTwo)) // fmt.Sprintf() is similar to String.format() in Java
 
 }

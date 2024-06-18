@@ -1,7 +1,7 @@
 package main
 
 import (
-	// We must rename the packages because they use the same name
+	// We must rename the packages because they use the same name "cart"
 	cartRepo "github.com/isd-sgcu/onboarding-backend/golang/2-dependency-injection/repository/cart"
 	cartSvc "github.com/isd-sgcu/onboarding-backend/golang/2-dependency-injection/service/cart"
 )
@@ -16,5 +16,4 @@ func main() {
 	total := cartService.Checkout()
 
 	println("Total items: ", total)
-
 }

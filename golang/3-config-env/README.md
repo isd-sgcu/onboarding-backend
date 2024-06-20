@@ -7,16 +7,16 @@ go get github.com/joho/godotenv
 after installing, there will be a new file `go.sum`, which is similar to `package-lock.json` in JS.
 
 ## New files
-### /config/config.go
+### ./config/config.go
 App config, which reads the environment variables.
 
-### /.env
+### .env
 Environment variables file. It is used to store sensitive information like API keys, database passwords, etc.
 
-### /.env.template
+### .env.template
 Template for the `.env` file. It is used to show the required environment variables. You commit this to remote repositories. In this tutorial, we will commit the .env file so you can see, but please don't commit it in real projects. Put it in `.gitignore`.
 
-### /.gitignore
+### .gitignore
 choose files and directories from being committed to the repository.
 
 

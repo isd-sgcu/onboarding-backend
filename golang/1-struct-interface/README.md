@@ -16,5 +16,5 @@ Entry point of the program.
 ### go.mod
 Go module file. It is like package.json in JS
 
-### /service/cart.service.go
+### ./service/cart.service.go
 Service file for cart.

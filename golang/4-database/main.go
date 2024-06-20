@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/isd-sgcu/onboarding-backend/golang/3-config-env/config"
-	cartRepo "github.com/isd-sgcu/onboarding-backend/golang/3-config-env/repository/cart"
-	cartSvc "github.com/isd-sgcu/onboarding-backend/golang/3-config-env/service/cart"
+	"github.com/isd-sgcu/onboarding-backend/golang/4-database/config"
+	cartRepo "github.com/isd-sgcu/onboarding-backend/golang/4-database/repository/cart"
+	cartSvc "github.com/isd-sgcu/onboarding-backend/golang/4-database/service/cart"
 )
 
 func main() {
@@ -15,7 +15,6 @@ func main() {
 	}
 
 	println("Config loaded successfully: ", conf.App.Port, conf.App.Env, conf.Database.Url, conf.Cors.AllowOrigins)
-	println("Is development: ", conf.App.IsDevelopment())
 
 	cartRepo := cartRepo.NewRepository()
 	cartService := cartSvc.NewService(cartRepo)

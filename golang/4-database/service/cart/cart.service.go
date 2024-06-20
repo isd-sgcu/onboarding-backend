@@ -1,6 +1,6 @@
 package cart
 
-import "github.com/isd-sgcu/onboarding-backend/golang/3-config-env/repository/cart"
+import "github.com/isd-sgcu/onboarding-backend/golang/4-database/repository/cart"
 
 type Service interface {
 	AddOrder(itemId int, quantity int)

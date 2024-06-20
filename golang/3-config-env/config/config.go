@@ -26,9 +26,9 @@ type Config struct {
 }
 
 func LoadConfig() (*Config, error) {
-	// If the environment is development, load the .env file
+	// If the environment is development, os.Getenv("APP_ENV") = "", load the .env file
 	// If the environment is production, the environment variables are usually already loaded in docker-compose.yml, so no need to load the .env file
-	if os.Getenv("APP_ENV") == "development" {
+	if os.Getenv("APP_ENV") == "" {
 		err := godotenv.Load(".env")
 		if err != nil {
 			return nil, err

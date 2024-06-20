@@ -20,7 +20,7 @@ func InitPostgresDatabase(conf *config.DatabaseConfig, isDebug bool) (db *gorm.D
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&model.Order{})
+	err = db.AutoMigrate(&model.User{})
 	if err != nil {
 		return nil, err
 	}

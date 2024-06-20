@@ -5,8 +5,8 @@ import (
 
 	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/config"
 	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/database"
-	cartRepo "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/repository/cart"
-	cartSvc "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/service/cart"
+	userRepo "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/repository/user"
+	userSvc "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/service/user"
 )
 
 func main() {
@@ -20,19 +20,19 @@ func main() {
 		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}
 
-	cartRepo := cartRepo.NewRepository(db)
-	cartService := cartSvc.NewService(cartRepo)
+	userRepo := userRepo.NewRepository(db)
+	userService := userSvc.NewService(userRepo)
 
-	cartService.AddOrder(1, 2)
-	cartService.AddOrder(2, 3)
+	userService.AddUser(1, 2)
+	userService.AddUser(2, 3)
 
-	total, err := cartService.Checkout()
+	total, err := userService.Checkout()
 	if err != nil {
 		panic(fmt.Sprintf("Failed to checkout: %v", err))
 	}
 
 	println("Total items: ")
-	for _, order := range *total {
-		println(fmt.Sprintf("Item %d: %d", order.ItemId, order.Quantity))
+	for _, user := range *total {
+		println(fmt.Sprintf("Item %d: %d", user.ItemId, user.Quantity))
 	}
 }

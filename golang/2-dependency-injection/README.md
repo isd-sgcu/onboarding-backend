@@ -27,3 +27,7 @@ func NewTitanDependencyInjection(height int) *Titan {
 Dependency Injection is a technique that allows us to write code that is more modular, testable, and maintainable. It is a way to remove hard-coded dependencies and make it possible to change them easily.
 
 We don't want to store orders as a map because when the program is restarted, the orders will be lost. We want to store the orders in a database. We can use an interface to abstract the database operations and use dependency injection to inject that interface into the service. We call interfaces that are used for database/stores operations "repositories".
+
+## New files
+### /repository/cart.repository.go
+Repository file for cart. It is the interface that abstracts the database operations.

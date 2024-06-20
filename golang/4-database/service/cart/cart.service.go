@@ -1,11 +1,14 @@
 package cart
 
-import "github.com/isd-sgcu/onboarding-backend/golang/4-database/repository/cart"
+import (
+	"github.com/isd-sgcu/onboarding-backend/golang/4-database/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/4-database/repository/cart"
+)
 
 type Service interface {
-	AddOrder(itemId int, quantity int)
-	RemoveOrder(itemId int)
-	Checkout() int
+	AddOrder(itemId int, quantity int) error
+	RemoveOrder(id string) error
+	Checkout() ([]model.Order, error)
 }
 
 type serviceImpl struct {
@@ -18,18 +21,35 @@ func NewService(repo cart.Repository) Service {
 	}
 }
 
-func (c *serviceImpl) AddOrder(itemId int, quantity int) {
-	c.repo.AddOrder(itemId, quantity)
-}
-
-func (c *serviceImpl) RemoveOrder(itemId int) {
-	c.repo.RemoveOrder(itemId)
-}
-
-func (c *serviceImpl) Checkout() int {
-	total := 0
-	for _, quantity := range c.repo.GetOrders() {
-		total += quantity
+func (c *serviceImpl) AddOrder(itemId int, quantity int) error {
+	order := model.Order{
+		ItemId:   itemId,
+		Quantity: quantity,
 	}
-	return total
+
+	err := c.repo.AddOrder(&order)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *serviceImpl) RemoveOrder(id string) error {
+	err := c.repo.RemoveOrder(id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *serviceImpl) Checkout() ([]model.Order, error) {
+	var result []model.Order
+	err := c.repo.GetOrders(&result)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
 }

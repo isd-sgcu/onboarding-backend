@@ -1,2 +1,5 @@
 # In real projects, you add .env without the comments
 # .env
+
+# this folder = data in the database becuase it is set in bind mount volume in docker-compose.yml
+data

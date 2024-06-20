@@ -21,7 +21,7 @@ func InitPostgresDatabase(conf *config.DatabaseConfig, isDebug bool) (db *gorm.D
 	}
 
 	// add Order table with the schema from model.Order
-	err = db.AutoMigrate(&model.Image{})
+	err = db.AutoMigrate(&model.Order{})
 	if err != nil {
 		return nil, err
 	}

@@ -1,6 +1,6 @@
 package model
 
-type Image struct {
+type Order struct {
 	Base
 	ItemId   int `json:"item_id"`
 	Quantity int `json:"quantity"`

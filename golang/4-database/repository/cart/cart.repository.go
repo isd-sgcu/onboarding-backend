@@ -1,29 +1,35 @@
 package cart
 
+import (
+	"github.com/isd-sgcu/onboarding-backend/golang/4-database/model"
+	"gorm.io/gorm"
+)
+
 type Repository interface {
-	AddOrder(itemId int, quantity int)
-	GetOrders() map[int]int
-	RemoveOrder(itemId int)
+	// when using a database, so many errors can occur. Therefore, we need to return an error
+	AddOrder(in *model.Order) error
+	GetOrders(result *[]model.Order) error // orders are put into result
+	RemoveOrder(id string) error           // use common model's ID field (uuid but we convert it to string)
 }
 
 type repositoryImpl struct {
-	db map[int]int
+	db *gorm.DB
 }
 
-func NewRepository() Repository {
+func NewRepository(db *gorm.DB) Repository {
 	return &repositoryImpl{
-		db: make(map[int]int),
+		db: db,
 	}
 }
 
-func (c *repositoryImpl) AddOrder(itemId int, quantity int) {
-	c.db[itemId] += quantity
+func (r *repositoryImpl) AddOrder(in *model.Order) error {
+	return r.db.Create(&in).Error
 }
 
-func (c *repositoryImpl) GetOrders() map[int]int {
-	return c.db
+func (r *repositoryImpl) GetOrders(result *[]model.Order) error {
+	return r.db.Model(&model.Order{}).Find(result).Error
 }
 
-func (c *repositoryImpl) RemoveOrder(itemId int) {
-	delete(c.db, itemId)
+func (r *repositoryImpl) RemoveOrder(id string) error {
+	return r.db.Where("id = ?", id).Delete(&model.Order{}).Error
 }

@@ -1,8 +1,8 @@
 package database
 
 import (
-	"github.com/isd-sgcu/onboarding-backend/golang/4-database/config"
-	"github.com/isd-sgcu/onboarding-backend/golang/4-database/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	gormLogger "gorm.io/gorm/logger"
@@ -20,7 +20,6 @@ func InitPostgresDatabase(conf *config.DatabaseConfig, isDebug bool) (db *gorm.D
 		return nil, err
 	}
 
-	// add Order table with the schema from model.Order
 	err = db.AutoMigrate(&model.Order{})
 	if err != nil {
 		return nil, err

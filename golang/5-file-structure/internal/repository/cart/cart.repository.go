@@ -1,15 +1,14 @@
 package cart
 
 import (
-	"github.com/isd-sgcu/onboarding-backend/golang/4-database/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/model"
 	"gorm.io/gorm"
 )
 
 type Repository interface {
-	// when using a database, so many errors can occur. Therefore, we need to return an error
 	AddOrder(in *model.Order) error
-	GetOrders(result *[]model.Order) error // orders are put into result
-	RemoveOrder(id string) error           // use common model's ID field (uuid but we convert it to string)
+	GetOrders(result *[]model.Order) error
+	RemoveOrder(id string) error
 }
 
 type repositoryImpl struct {

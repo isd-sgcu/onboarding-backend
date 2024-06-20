@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/isd-sgcu/onboarding-backend/golang/4-database/config"
-	"github.com/isd-sgcu/onboarding-backend/golang/4-database/database"
-	cartRepo "github.com/isd-sgcu/onboarding-backend/golang/4-database/repository/cart"
-	cartSvc "github.com/isd-sgcu/onboarding-backend/golang/4-database/service/cart"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/database"
+	cartRepo "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/repository/cart"
+	cartSvc "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/service/cart"
 )
 
 func main() {
@@ -32,7 +32,7 @@ func main() {
 	}
 
 	println("Total items: ")
-	for _, order := range *total { // _ is a blank identifier, it's used when we don't need the value (in this case, the index in array)
+	for _, order := range *total {
 		println(fmt.Sprintf("Item %d: %d", order.ItemId, order.Quantity))
 	}
 }

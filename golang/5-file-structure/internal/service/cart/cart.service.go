@@ -1,8 +1,8 @@
 package cart
 
 import (
-	"github.com/isd-sgcu/onboarding-backend/golang/4-database/model"
-	"github.com/isd-sgcu/onboarding-backend/golang/4-database/repository/cart"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/repository/cart"
 )
 
 type Service interface {

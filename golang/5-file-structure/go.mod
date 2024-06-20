@@ -1,4 +1,4 @@
-module github.com/isd-sgcu/onboarding-backend/golang/4-database
+module github.com/isd-sgcu/onboarding-backend/golang/5-file-structure
 
 go 1.21.0
 

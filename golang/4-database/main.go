@@ -32,7 +32,7 @@ func main() {
 	}
 
 	println("Total items: ")
-	for _, order := range total { // _ is a blank identifier, it's used when we don't need the value (in this case, the index in array)
+	for _, order := range *total { // _ is a blank identifier, it's used when we don't need the value (in this case, the index in array)
 		println(fmt.Sprintf("Item %d: %d", order.ItemId, order.Quantity))
 	}
 }

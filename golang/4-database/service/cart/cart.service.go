@@ -8,7 +8,7 @@ import (
 type Service interface {
 	AddOrder(itemId int, quantity int) error
 	RemoveOrder(id string) error
-	Checkout() ([]model.Order, error)
+	Checkout() (*[]model.Order, error)
 }
 
 type serviceImpl struct {
@@ -44,12 +44,12 @@ func (c *serviceImpl) RemoveOrder(id string) error {
 	return nil
 }
 
-func (c *serviceImpl) Checkout() ([]model.Order, error) {
+func (c *serviceImpl) Checkout() (*[]model.Order, error) {
 	var result []model.Order
 	err := c.repo.GetOrders(&result)
 	if err != nil {
 		return nil, err
 	}
 
-	return result, nil
+	return &result, nil
 }

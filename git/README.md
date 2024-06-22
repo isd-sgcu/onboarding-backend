@@ -1,139 +1,115 @@
-# Git
+### Quick Summary
 
-## How to Collaborate with Git
+1. **Create Feature Branch**: Always start with a new branch.
 
-### 1. Fork the repository
-
-- Go to the repository you want to contribute to
-- Click on the "Fork" button at the top right corner
-- This will create a copy of the repository in your GitHub account
-- You can now clone this repository to your local machine
-- Click on the "Code" button and copy the URL
-- Open your terminal and run the following command:
-
-```bash
-git clone <URL>
+```sh
+git checkout -b feature-branch
 ```
 
-### 2. Add a remote upstream
+2. **Commit Changes Frequently**: Make regular, small commits with clear messages.
 
-- Change into the directory of the repository
-
-```bash
-cd <repository>
-```
-
-- Add a remote upstream to the original repository
-
-```bash
-git remote add upstream <URL>
-```
-
-- Verify the remote has been added
-
-```bash
-git remote -v
-```
-
-### 3. Create a new branch
-
-- Before making any changes, create a new branch
-
-```bash
-git checkout -b <branch-name>
-```
-
-- Make sure you are on the new branch
-
-```bash
-git branch
-```
-
-### 4. Make changes
-
-- Make changes to the files in the repository
-- Add the changes to the staging area
-
-```bash
+```sh
 git add .
+git commit -m "your commit message"
 ```
 
-- Commit the changes
+3. **Pull from Main/Dev Regularly**: Keep your branch updated with the latest changes.
 
-```bash
-git commit -m "Your commit message"
+```sh
+git pull origin main
+git pull origin dev
 ```
 
-### 5. Push changes to your fork
+4. **Push Branch**: Push your branch to the remote repository.
 
-- Push the changes to your fork on GitHub
-
-```bash
-git push origin <branch-name>
+```sh
+git push origin feature-branch
 ```
 
-### 6. Create a pull request
+5. **Create Pull Request**: Submit your branch for review and merging.
+6. **Resolve Merge Conflicts**: Address any conflicts that arise during the pull request process.
+7. **Merge Branch**: Once approved, merge your branch into the main branch.
 
-- Go to your fork on GitHub
-- Click on the "Compare & pull request" button
-- Add a title and description to your pull request
-- Click on the "Create pull request" button
-- Wait for the repository owner to review and merge your changes
-- If there are any conflicts, resolve them and push the changes to your fork
-- Your pull request will be automatically updated
-- Once your pull request is merged, you can delete the branch
-- Change back to the main branch
+### Updating Your Branch to Keep Up-to-Date with dev
 
-```bash
-git checkout main
+assume you are working on a `your-feature-branch` and you want to update your branch with the latest changes from the `dev`.
+
+1. Switch to the `dev` branch:
+
+```sh
+git checkout dev
 ```
 
-- Delete the branch
+2. Pull the latest changes from the remote `dev` branch:
 
-```bash
-git branch -d <branch-name>
+```sh
+git pull origin dev
 ```
 
-### 7. Sync your fork
+3. Switch back to your feature branch:
 
-- Fetch the changes from the original repository
-
-```bash
-git fetch upstream
+```sh
+git checkout <your-feature-branch>
 ```
 
-- Check out the main branch
+#### Avoid extra merge commits
 
-```bash
-git checkout main
+Instead of merging the `dev` branch into your feature branch, you can rebase your feature branch on top of the `dev` branch.
+
+````sh
+we need to pull the latest changes from `dev` branch
+
+1. Switch to the `dev` branch:
+
+```sh
+git checkout dev
+````
+
+2. Pull the latest changes from the remote `dev` branch:
+
+```sh
+git pull origin dev
 ```
 
-- Merge the changes from the original repository
+3. Switch back to your feature branch:
 
-```bash
-git merge upstream/main
+```sh
+git checkout <your-feature-branch>
 ```
 
-- Push the changes to your fork on GitHub
+4. Rebase your feature branch on top of the `dev` branch:
 
-```bash
-git push origin main
+```sh
+git rebase dev
 ```
 
-### 8. Repeat
+> Rebasing will put `dev` branch commits under your `feature-branch` commits.
 
-- Repeat the process for any new contributions you want to make
-- Make sure to always sync your fork before creating a new branch
-- Keep your fork up to date with the original repository
-- Happy contributing to ISD projects!
+5. If there are any conflicts, resolve them and continue the rebase:
 
-### 9. Resources
+```sh
+git rebase --continue
+```
 
-- [GitHub Guides](https://guides.github.com/)
-- [Pro Git Book](https://git-scm.com/book/en/v2)
-- [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials)
-- [Git Documentation](https://git-scm.com/doc)
-- [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-- [Git Explorer](https://gitexplorer.com/)
-- [Learn Git Branching](https://learngitbranching.js.org/)
-- [Git Immersion](http://gitimmersion.com/)
+6. Once the rebase is complete, Your might need to use `-f` to force push
+
+```sh
+git push origin -f <your-feature-branch>
+```
+
+### Creating a Pull Request (PR)
+
+1. Push your branch to the remote repository
+
+```sh
+git push origin <your-feature-branch>
+```
+
+2. Create a Pull Request on GitHub
+
+- Go to your repository on the web platform.
+- Click on the "New Pull Request" or "Create Merge Request" button.
+- Select your branch (source branch) and the branch you want to merge into (target branch, such as dev or main).
+- Write descriptions
+- Submit the pull request.
+- Merge the Pull Request **once approved!**.

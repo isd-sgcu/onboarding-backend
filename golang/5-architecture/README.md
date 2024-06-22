@@ -3,6 +3,10 @@ We are following (not strictly) the [standard Go project layout](https://github.
 
 From this part onwards, we will implement the user model part of RPKM66.
 
+# Running the project
+- copy `.env.template` to `.env`
+- run `go run cmd/main.go` or `make server`
+
 # Components
 ## Handler
 - Responsible for handling the request and returning the response.

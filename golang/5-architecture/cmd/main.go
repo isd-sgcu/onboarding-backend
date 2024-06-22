@@ -15,7 +15,7 @@ func main() {
 		panic(fmt.Sprintf("Failed to load config: %v", err))
 	}
 
-	db, err := database.InitPostgresDatabase(&conf.Database, conf.App.IsDevelopment())
+	db, err := database.InitDatabase(&conf.Database, conf.App.IsDevelopment())
 	if err != nil {
 		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}

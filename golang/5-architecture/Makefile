@@ -1,5 +1,5 @@
 server:
 	go run cmd/main.go
 
-compose:
+docker:
 	docker-compose up -d 

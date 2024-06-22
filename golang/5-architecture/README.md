@@ -5,7 +5,8 @@ From this part onwards, we will implement the user model part of RPKM66.
 
 # Running the project
 - copy `.env.template` to `.env`
-- run `go run cmd/main.go` or `make server`
+- run `docker-compose up -d` or `make docker` to start the database
+- run `go run cmd/main.go` or `make server`. Even better, run `air` for hot reload (You don't to manually restart every time you changed some code).
 
 # Components
 ## Handler

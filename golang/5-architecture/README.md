@@ -9,6 +9,7 @@ From this part onwards, we will implement the user model part of RPKM66.
 - added `internal` folder to store the components
 - added `apperror` folder for services' custom error with status code
 - added `.air.toml` for hot reload configuration
+- services now use `dto` to send data in and out
 
 # Running the project
 - copy `.env.template` to `.env`

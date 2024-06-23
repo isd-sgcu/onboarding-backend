@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 
-	"github.com/gin-gonic/gin"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/database"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
@@ -26,9 +25,9 @@ func main() {
 	userService := user.NewService(userRepo)
 
 	r := router.New(conf)
-	r.V1.POST("/user", func(c *gin.Context) {
+	r.V1Post("/user", func(c router.Context) { // use V1Post() instead of V1.POST() and router.Context instead of *gin.Context
 		var createUserDto dto.CreaterUserRequest
-		if err := c.BindJSON(&createUserDto); err != nil {
+		if err := c.Bind(&createUserDto); err != nil {
 			c.JSON(400, err)
 			return
 		}
@@ -42,7 +41,7 @@ func main() {
 		c.JSON(200, createdUser)
 	})
 
-	r.V1.GET("/user/:id", func(c *gin.Context) {
+	r.V1Get("/user/:id", func(c router.Context) {
 		id := c.Param("id")
 		if id == "" {
 			c.JSON(400, "id is required in url param")
@@ -58,7 +57,7 @@ func main() {
 		c.JSON(200, total)
 	})
 
-	r.V1.DELETE("/user/:id", func(c *gin.Context) {
+	r.V1Delete("/user/:id", func(c router.Context) {
 		id := c.Param("id")
 		if id == "" {
 			c.JSON(400, "id is required in url param")

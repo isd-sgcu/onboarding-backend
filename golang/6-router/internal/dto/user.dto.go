@@ -2,7 +2,6 @@ package dto
 
 import "github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/model"
 
-// dtos are used for sending data in and out of the service layer
 type CreaterUserRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`

@@ -7,7 +7,7 @@ import (
 
 type Router struct {
 	*gin.Engine
-	V1 *gin.RouterGroup // capital V1 to make it public
+	v1 *gin.RouterGroup // now v1 is private because we created public methods for it in v1.router.go
 }
 
 func New(conf *config.Config) *Router {
@@ -16,7 +16,7 @@ func New(conf *config.Config) *Router {
 	}
 
 	r := gin.Default()
-	v1 := r.Group("/api/v1") // prefix every endpoint with /api/v1 is a good practice
+	v1 := r.Group("/api/v1")
 
 	return &Router{r, v1}
 }

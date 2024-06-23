@@ -7,3 +7,4 @@
 
 # Changes made
 - created a custom context `/internal/router/context.go` extending from gin's context to make testing in the future easier and make the code cleaner
+- abstracted v1 router to `router/v1.router.go` to make the code cleaner in `main.go`

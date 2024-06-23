@@ -20,9 +20,9 @@ There are 2 ways to create mocks:
 2. Using `mockgen` from `github.com/golang/mock/mockgen`
 
 ## Manually creating the mocks
-see `/internal/user/user.service.go`
+see `/internal/user/user.service_manual.go` to get an idea of how mocks actually work.
 
-## Using `mockgen`
+## Using `mockgen` (preferred)
 1. Install `mockgen`
 ```bash
 # install mockgen
@@ -31,3 +31,4 @@ go get github.com/golang/mock/mockgen@v1.4.4
 # generate mocks
 make mockgen
 ```
+mocks: `/mocks/user/user.repository.go` and `/mocks/user/user.service.go`

@@ -16,7 +16,11 @@ func New(conf *config.Config) *Router {
 	}
 
 	r := gin.Default()
-	v1 := r.Group("/api/v1")
+	v1 := r.Group("/api/v1") // prefix every endpoint with /api/v1 is a good practice
 
 	return &Router{r, v1}
+}
+
+func (r *Router) V1() *gin.RouterGroup { // getter for v1 (without this, v1 is not accessible from outside the package)
+	return r.v1
 }

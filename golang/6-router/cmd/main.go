@@ -3,9 +3,12 @@ package main
 import (
 	"fmt"
 
+	"github.com/gin-gonic/gin"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/database"
+	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/model"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/user"
+	"github.com/isd-sgcu/onboarding-backend/golang/6-router/router"
 )
 
 func main() {
@@ -22,16 +25,26 @@ func main() {
 	userRepo := user.NewRepository(db)
 	userService := user.NewService(userRepo)
 
-	userService.AddUser(1, 2)
-	userService.AddUser(2, 3)
+	r := router.New(conf)
+	r.V1().POST("/user", func(c *gin.Context) {
+		var user model.User
+		if err := c.BindJSON(&user); err != nil {
+			c.JSON(400, err)
+			return
+		}
 
-	total, apperr := userService.Checkout()
-	if apperr != nil {
-		panic(fmt.Sprintf("Failed to checkout: %v", err))
-	}
+		userService.AddUser(user.ItemId, user.Quantity)
+		c.JSON(200, gin.H{"message": "success"})
+	})
 
-	println("Total items: ")
-	for _, user := range *total {
-		println(fmt.Sprintf("Item %d: %d", user.ItemId, user.Quantity))
-	}
+	r.V1().GET("/user", func(c *gin.Context) {
+		total, apperr := userService.Checkout()
+		if apperr != nil {
+			c.JSON(500, apperr)
+			return
+		}
+
+		c.JSON(200, total)
+	})
+
 }

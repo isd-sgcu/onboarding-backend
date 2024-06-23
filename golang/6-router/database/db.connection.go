@@ -8,7 +8,7 @@ import (
 	gormLogger "gorm.io/gorm/logger"
 )
 
-func InitPostgresDatabase(conf *config.DatabaseConfig, isDebug bool) (db *gorm.DB, err error) {
+func InitDatabase(conf *config.DatabaseConfig, isDebug bool) (db *gorm.DB, err error) {
 	gormConf := &gorm.Config{}
 
 	if !isDebug {

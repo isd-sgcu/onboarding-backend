@@ -16,7 +16,7 @@ From this part onwards, we will implement the user model part of RPKM66.
 - run `go run cmd/main.go` or `make server`. Even better, run `air` for hot reload (You don't to manually restart every time you changed some code).
 
 # Components
-## Handler
+## Handler (will be discussed later)
 - Responsible for handling the request and returning the response.
 - It should not contain any business logic.
 - It should only call the service layer to perform the business logic.

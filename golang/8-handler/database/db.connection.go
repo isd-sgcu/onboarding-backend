@@ -1,8 +1,8 @@
 package database
 
 import (
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/8-handler/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/8-handler/internal/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	gormLogger "gorm.io/gorm/logger"

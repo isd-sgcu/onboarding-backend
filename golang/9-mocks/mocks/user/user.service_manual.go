@@ -1,8 +1,8 @@
 package mock_user
 
 import (
-	apperror "github.com/isd-sgcu/onboarding-backend/golang/6-router/apperror"
-	dto "github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
+	apperror "github.com/isd-sgcu/onboarding-backend/golang/9-mocks/apperror"
+	dto "github.com/isd-sgcu/onboarding-backend/golang/9-mocks/internal/dto"
 	"github.com/stretchr/testify/mock"
 )
 

@@ -3,7 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/apperror"
+	"github.com/isd-sgcu/onboarding-backend/golang/9-mocks/apperror"
 )
 
 type Context interface {

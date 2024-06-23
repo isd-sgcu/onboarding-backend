@@ -3,8 +3,8 @@ package user
 import (
 	"net/http"
 
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/router"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/internal/dto"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/internal/router"
 )
 
 type Handler interface {
@@ -58,15 +58,15 @@ func (h *handlerImpl) FindOne(c router.Context) {
 func (h *handlerImpl) Delete(c router.Context) {
 	id := c.Param("id")
 	if id == "" {
-		c.JSON(400, "id is required in url param")
+		c.BadRequestError("id is required in url param")
 		return
 	}
 
-	total, apperr := h.svc.Delete(&dto.DeleteUserRequest{Id: id})
+	res, apperr := h.svc.Delete(&dto.DeleteUserRequest{Id: id})
 	if apperr != nil {
 		c.ResponseError(apperr)
 		return
 	}
 
-	c.JSON(http.StatusOK, total)
+	c.JSON(http.StatusOK, res)
 }

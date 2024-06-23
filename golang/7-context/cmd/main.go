@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/database"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/router"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/user"
+	"github.com/isd-sgcu/onboarding-backend/golang/7-context/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/7-context/database"
+	"github.com/isd-sgcu/onboarding-backend/golang/7-context/internal/dto"
+	"github.com/isd-sgcu/onboarding-backend/golang/7-context/internal/router"
+	"github.com/isd-sgcu/onboarding-backend/golang/7-context/internal/user"
 )
 
 func main() {
@@ -48,13 +48,13 @@ func main() {
 			return
 		}
 
-		total, apperr := userService.FindOne(&dto.FindOneUserRequest{Id: id})
+		res, apperr := userService.FindOne(&dto.FindOneUserRequest{Id: id})
 		if apperr != nil {
 			c.JSON(500, apperr)
 			return
 		}
 
-		c.JSON(200, total)
+		c.JSON(200, res)
 	})
 
 	r.V1Delete("/user/:id", func(c router.Context) {

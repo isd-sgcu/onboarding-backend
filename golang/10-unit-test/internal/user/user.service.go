@@ -1,9 +1,9 @@
 package user
 
 import (
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/apperror"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/apperror"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/internal/dto"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/internal/model"
 )
 
 type Service interface {

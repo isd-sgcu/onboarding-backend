@@ -8,8 +8,8 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	apperror "github.com/isd-sgcu/onboarding-backend/golang/6-router/apperror"
-	dto "github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
+	apperror "github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/apperror"
+	dto "github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/internal/dto"
 )
 
 // MockService is a mock of Service interface.

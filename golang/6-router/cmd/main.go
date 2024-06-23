@@ -49,13 +49,13 @@ func main() {
 			return
 		}
 
-		total, apperr := userService.FindOne(&dto.FindOneUserRequest{Id: id})
+		res, apperr := userService.FindOne(&dto.FindOneUserRequest{Id: id})
 		if apperr != nil {
 			c.JSON(500, apperr)
 			return
 		}
 
-		c.JSON(200, total)
+		c.JSON(200, res)
 	})
 
 	r.V1.DELETE("/user/:id", func(c *gin.Context) {
@@ -65,13 +65,13 @@ func main() {
 			return
 		}
 
-		total, apperr := userService.Delete(&dto.DeleteUserRequest{Id: id})
+		res, apperr := userService.Delete(&dto.DeleteUserRequest{Id: id})
 		if apperr != nil {
 			c.JSON(500, apperr)
 			return
 		}
 
-		c.JSON(200, total)
+		c.JSON(200, res)
 	})
 
 	if err := r.Run(fmt.Sprintf(":%v", conf.App.Port)); err != nil {

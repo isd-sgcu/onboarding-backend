@@ -1,6 +1,6 @@
 package dto
 
-import "github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/model"
+import "github.com/isd-sgcu/onboarding-backend/golang/7-context/internal/model"
 
 type CreaterUserRequest struct {
 	Email    string `json:"email"`

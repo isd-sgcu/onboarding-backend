@@ -9,7 +9,7 @@ import (
 
 	gomock "github.com/golang/mock/gomock"
 	uuid "github.com/google/uuid"
-	apperror "github.com/isd-sgcu/onboarding-backend/golang/6-router/apperror"
+	apperror "github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/apperror"
 )
 
 // MockContext is a mock of Context interface.

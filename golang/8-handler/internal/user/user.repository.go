@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/8-handler/internal/model"
 	"gorm.io/gorm"
 )
 

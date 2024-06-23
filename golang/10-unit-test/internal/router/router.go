@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/config"
 )
 
 type Router struct {

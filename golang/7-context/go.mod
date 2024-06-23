@@ -1,4 +1,4 @@
-module github.com/isd-sgcu/onboarding-backend/golang/6-router
+module github.com/isd-sgcu/onboarding-backend/golang/7-context
 
 go 1.21.0
 

@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/database"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/router"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/user"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/database"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/internal/router"
+	"github.com/isd-sgcu/onboarding-backend/golang/10-unit-test/internal/user"
 )
 
 func main() {

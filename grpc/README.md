@@ -13,9 +13,9 @@ GOPROXY=proxy.golang.org go list -m github.com/isd-sgcu/rpkm67-go-proto@v0.0.6
 ```
 In this example, the package is `github.com/isd-sgcu/rpkm67-go-proto`
 
-
 Note that the version number should be the latest version.
 - v0.0.5 -> v0.0.6: patches
 - v0.0.5 -> v0.1.0: minor changes
 - v0.0.5 -> v1.0.0: major changes with breaking changes
+
 or just do whatever you want with the version number.

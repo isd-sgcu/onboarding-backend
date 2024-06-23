@@ -46,13 +46,13 @@ func (h *handlerImpl) FindOne(c router.Context) {
 		return
 	}
 
-	total, apperr := h.svc.FindOne(&dto.FindOneUserRequest{Id: id})
+	res, apperr := h.svc.FindOne(&dto.FindOneUserRequest{Id: id})
 	if apperr != nil {
 		c.ResponseError(apperr)
 		return
 	}
 
-	c.JSON(http.StatusOK, total)
+	c.JSON(http.StatusOK, res)
 }
 
 func (h *handlerImpl) Delete(c router.Context) {

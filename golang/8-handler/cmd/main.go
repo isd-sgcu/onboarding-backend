@@ -5,7 +5,6 @@ import (
 
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/database"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/user"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/router"
 )
@@ -22,56 +21,15 @@ func main() {
 	}
 
 	userRepo := user.NewRepository(db)
-	userService := user.NewService(userRepo)
+	userSvc := user.NewService(userRepo)
+	userHdr := user.NewHandler(userSvc)
 
 	r := router.New(conf)
-	r.V1Post("/user", func(c router.Context) {
-		var createUserDto dto.CreaterUserRequest
-		if err := c.Bind(&createUserDto); err != nil {
-			c.JSON(400, err)
-			return
-		}
+	r.V1Post("/user", userHdr.Create)
 
-		createdUser, err := userService.Create(&createUserDto)
-		if err != nil {
-			c.JSON(500, err)
-			return
-		}
+	r.V1Get("/user/:id", userHdr.FindOne)
 
-		c.JSON(200, createdUser)
-	})
-
-	r.V1Get("/user/:id", func(c router.Context) {
-		id := c.Param("id")
-		if id == "" {
-			c.JSON(400, "id is required in url param")
-			return
-		}
-
-		total, apperr := userService.FindOne(&dto.FindOneUserRequest{Id: id})
-		if apperr != nil {
-			c.JSON(500, apperr)
-			return
-		}
-
-		c.JSON(200, total)
-	})
-
-	r.V1Delete("/user/:id", func(c router.Context) {
-		id := c.Param("id")
-		if id == "" {
-			c.JSON(400, "id is required in url param")
-			return
-		}
-
-		total, apperr := userService.Delete(&dto.DeleteUserRequest{Id: id})
-		if apperr != nil {
-			c.JSON(500, apperr)
-			return
-		}
-
-		c.JSON(200, total)
-	})
+	r.V1Delete("/user/:id", userHdr.Delete)
 
 	if err := r.Run(fmt.Sprintf(":%v", conf.App.Port)); err != nil {
 		panic(fmt.Sprintf("Failed to run router: %v", err))

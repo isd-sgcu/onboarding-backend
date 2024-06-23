@@ -29,11 +29,13 @@ func TestUserHandler(t *testing.T) {
 
 func (t *UserHandlerTest) SetupTest() {
 	t.controller = gomock.NewController(t.T())
-	t.CreateUserReq = &dto.CreaterUserRequest{}
-	// t.CreateUserReq is empty because when we bind the request in the handler, the variable is also empty
 	t.User = &model.User{
 		Email:    faker.Email(),
 		Password: faker.Password(),
+	}
+	t.CreateUserReq = &dto.CreaterUserRequest{
+		Email:    t.User.Email,
+		Password: t.User.Password,
 	}
 }
 
@@ -51,7 +53,8 @@ func (t *UserHandlerTest) TestCreateSuccess() {
 
 	// 3. Define mock behavior
 	// must be the same flow as the actual code i.e. bind -> service -> response in user.handler.go
-	ctx.EXPECT().Bind(t.CreateUserReq).Return(nil)
+	// Bind(&dto.CreaterUserRequest{}) because when we bind the request in the handler, the variable is also empty struct
+	ctx.EXPECT().Bind(&dto.CreaterUserRequest{}).SetArg(0, *t.CreateUserReq)
 	svc.EXPECT().Create(t.CreateUserReq).Return(expectedResp, nil)
 	ctx.EXPECT().JSON(http.StatusCreated, expectedResp)
 
@@ -65,7 +68,7 @@ func (t *UserHandlerTest) TestCreateBindError() {
 	// we don't need to call user service because the error is in the binding (it is before the service call)
 	// so we don't need to create a mock for user service, less code = better
 
-	ctx.EXPECT().Bind(t.CreateUserReq).Return(errors.New("error"))
+	ctx.EXPECT().Bind(&dto.CreaterUserRequest{}).Return(errors.New("error"))
 	ctx.EXPECT().BadRequestError("error")
 
 	hdr.Create(ctx)
@@ -78,7 +81,7 @@ func (t *UserHandlerTest) TestCreateUserServiceError() {
 	// we don't need to call user service because the error is in the binding (it is before the service call)
 	// so we don't need to create a mock for user service, less code = better
 
-	ctx.EXPECT().Bind(t.CreateUserReq).Return(nil)
+	ctx.EXPECT().Bind(&dto.CreaterUserRequest{}).SetArg(0, *t.CreateUserReq)
 	svc.EXPECT().Create(t.CreateUserReq).Return(nil, apperror.InternalServer) // pick any apperror you want, we just want
 	//check that the same error is passed to the ctx.EXPECT().ResponseError
 	ctx.EXPECT().ResponseError(apperror.InternalServer)

@@ -31,4 +31,4 @@ go get github.com/golang/mock/mockgen@v1.4.4
 # generate mocks
 make mockgen
 ```
-mocks: `/mocks/user/user.repository.go` and `/mocks/user/user.service.go`
+mocks: `/mocks/user/user.repository.go`, `/mocks/user/user.service.go` and `/mocks/router/context.go`

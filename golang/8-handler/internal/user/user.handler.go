@@ -2,7 +2,7 @@ package user
 
 import (
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/router"
+	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/router"
 )
 
 type Handler interface {

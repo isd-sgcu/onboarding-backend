@@ -5,8 +5,8 @@ import (
 
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/database"
+	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/router"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/user"
-	"github.com/isd-sgcu/onboarding-backend/golang/6-router/router"
 )
 
 func main() {

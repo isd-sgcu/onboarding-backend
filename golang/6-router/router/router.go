@@ -7,7 +7,7 @@ import (
 
 type Router struct {
 	*gin.Engine
-	v1 *gin.RouterGroup
+	V1 *gin.RouterGroup // capital V1 to make it public
 }
 
 func New(conf *config.Config) *Router {
@@ -19,8 +19,4 @@ func New(conf *config.Config) *Router {
 	v1 := r.Group("/api/v1") // prefix every endpoint with /api/v1 is a good practice
 
 	return &Router{r, v1}
-}
-
-func (r *Router) V1() *gin.RouterGroup { // getter for v1 (without this, v1 is not accessible from outside the package)
-	return r.v1
 }

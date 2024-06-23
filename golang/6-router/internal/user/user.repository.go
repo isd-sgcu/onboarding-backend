@@ -6,9 +6,9 @@ import (
 )
 
 type Repository interface {
-	AddUser(in *model.User) error
-	GetUsers(result *[]model.User) error
-	RemoveUser(id string) error
+	Create(in *model.User) error
+	FindOne(id string, user *model.User) error
+	Delete(id string) error
 }
 
 type repositoryImpl struct {
@@ -21,14 +21,14 @@ func NewRepository(db *gorm.DB) Repository {
 	}
 }
 
-func (r *repositoryImpl) AddUser(in *model.User) error {
+func (r *repositoryImpl) Create(in *model.User) error {
 	return r.db.Create(&in).Error
 }
 
-func (r *repositoryImpl) GetUsers(result *[]model.User) error {
-	return r.db.Model(&model.User{}).Find(result).Error
+func (r *repositoryImpl) FindOne(id string, user *model.User) error {
+	return r.db.First(user, "id = ?", id).Error
 }
 
-func (r *repositoryImpl) RemoveUser(id string) error {
+func (r *repositoryImpl) Delete(id string) error {
 	return r.db.Where("id = ?", id).Delete(&model.User{}).Error
 }

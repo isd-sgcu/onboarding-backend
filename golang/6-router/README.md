@@ -7,7 +7,21 @@
 
 # Changes made
 - added gin `router` to make the app into API
-- registered the services to the router
+- registered the services to the router and added the endpoints in `main.go`
 
 # API Endpoints
-- /
+- POST localhost:3001/api/v1/user
+- GET localhost:3001/api/v1/user/:id
+- DELETE localhost:3001/api/v1/user/:id
+Note that when deleting, it will return success even if there's no user with that id. Reason is that it reached the same desired state (no user with that id).
+
+# Postman API testing
+
+## POST user
+![alt text](./_images/post.png)
+
+## GET user
+![alt text](./_images/get.png)
+
+## DELETE user
+![alt text](./_images/delete.png)

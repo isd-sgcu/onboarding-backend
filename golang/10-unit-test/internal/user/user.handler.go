@@ -1,6 +1,8 @@
 package user
 
 import (
+	"net/http"
+
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/dto"
 	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/router"
 )
@@ -24,33 +26,33 @@ func NewHandler(svc Service) Handler {
 func (h *handlerImpl) Create(c router.Context) {
 	var createUserDto dto.CreaterUserRequest
 	if err := c.Bind(&createUserDto); err != nil {
-		c.JSON(400, err)
+		c.BadRequestError(err.Error())
 		return
 	}
 
-	createdUser, err := h.svc.Create(&createUserDto)
-	if err != nil {
-		c.JSON(500, err)
+	createdUser, apperr := h.svc.Create(&createUserDto)
+	if apperr != nil {
+		c.ResponseError(apperr)
 		return
 	}
 
-	c.JSON(200, createdUser)
+	c.JSON(http.StatusCreated, createdUser)
 }
 
 func (h *handlerImpl) FindOne(c router.Context) {
 	id := c.Param("id")
 	if id == "" {
-		c.JSON(400, "id is required in url param")
+		c.BadRequestError("id is required in url param")
 		return
 	}
 
 	total, apperr := h.svc.FindOne(&dto.FindOneUserRequest{Id: id})
 	if apperr != nil {
-		c.JSON(500, apperr)
+		c.ResponseError(apperr)
 		return
 	}
 
-	c.JSON(200, total)
+	c.JSON(http.StatusOK, total)
 }
 
 func (h *handlerImpl) Delete(c router.Context) {
@@ -62,9 +64,9 @@ func (h *handlerImpl) Delete(c router.Context) {
 
 	total, apperr := h.svc.Delete(&dto.DeleteUserRequest{Id: id})
 	if apperr != nil {
-		c.JSON(500, apperr)
+		c.ResponseError(apperr)
 		return
 	}
 
-	c.JSON(200, total)
+	c.JSON(http.StatusOK, total)
 }

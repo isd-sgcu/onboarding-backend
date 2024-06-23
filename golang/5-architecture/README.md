@@ -16,6 +16,12 @@ From this part onwards, we will implement the user model part of RPKM66.
 - run `go run cmd/main.go` or `make server`. Even better, run `air` for hot reload (You don't to manually restart every time you changed some code).
 
 # Components
+## Router (will be discussed later)
+- It is where you define the GET/POST/PUT/DELETE etc. endpoints.
+- Responsible for routing the request to the appropriate handler.
+- It should not contain any business logic.
+- It should only call the handler to handle the request.
+
 ## Handler (will be discussed later)
 - Responsible for handling the request and returning the response.
 - It should not contain any business logic.
@@ -59,3 +65,4 @@ gRPC server <-> service <-> repository <-> database/store
 - `repository` return type pure golang `error`
 - `service` receive `error` from `repository` and return to handler as a custom error equipped with HTTP status codes `apperror`
 - `handler` only responses to the request with the return from `service`
+This topic is discussed more deeply in the `logging-error` part.

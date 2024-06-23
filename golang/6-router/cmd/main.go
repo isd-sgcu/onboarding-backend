@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/config"
-	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/database"
-	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/internal/user"
+	"github.com/isd-sgcu/onboarding-backend/golang/6-router/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/6-router/database"
+	"github.com/isd-sgcu/onboarding-backend/golang/6-router/internal/user"
 )
 
 func main() {

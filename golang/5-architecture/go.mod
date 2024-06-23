@@ -1,4 +1,4 @@
-module github.com/isd-sgcu/onboarding-backend/golang/5-file-structure
+module github.com/isd-sgcu/onboarding-backend/golang/5-architecture
 
 go 1.21.0
 

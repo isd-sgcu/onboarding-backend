@@ -1,7 +1,7 @@
-package cart
+package user
 
 import (
-	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/model"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/internal/model"
 	"gorm.io/gorm"
 )
 

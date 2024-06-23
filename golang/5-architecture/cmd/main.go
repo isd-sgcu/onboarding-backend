@@ -3,10 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/config"
-	"github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/database"
-	userRepo "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/repository/user"
-	userSvc "github.com/isd-sgcu/onboarding-backend/golang/5-file-structure/internal/service/user"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/config"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/database"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/internal/user"
 )
 
 func main() {
@@ -20,14 +19,14 @@ func main() {
 		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}
 
-	userRepo := userRepo.NewRepository(db)
-	userService := userSvc.NewService(userRepo)
+	userRepo := user.NewRepository(db)
+	userService := user.NewService(userRepo)
 
 	userService.AddUser(1, 2)
 	userService.AddUser(2, 3)
 
-	total, err := userService.Checkout()
-	if err != nil {
+	total, apperr := userService.Checkout()
+	if apperr != nil {
 		panic(fmt.Sprintf("Failed to checkout: %v", err))
 	}
 

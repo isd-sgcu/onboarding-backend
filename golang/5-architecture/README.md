@@ -3,6 +3,13 @@ We are following (not strictly) the [standard Go project layout](https://github.
 
 From this part onwards, we will implement the user model part of RPKM66.
 
+# Changes made
+- components like service, handler, repository are moved to same folder for better organization (organization by feature)
+- added `cmd` folder to store the main.go file
+- added `internal` folder to store the components
+- added `apperror` folder for services' custom error with status code
+- added `.air.toml` for hot reload configuration
+
 # Running the project
 - copy `.env.template` to `.env`
 - run `docker-compose up -d` or `make docker` to start the database

@@ -5,6 +5,7 @@ import (
 
 	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/config"
 	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/database"
+	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/internal/dto"
 	"github.com/isd-sgcu/onboarding-backend/golang/5-architecture/internal/user"
 )
 
@@ -22,16 +23,14 @@ func main() {
 	userRepo := user.NewRepository(db)
 	userService := user.NewService(userRepo)
 
-	userService.AddUser(1, 2)
-	userService.AddUser(2, 3)
+	createNewUserReq := &dto.CreaterUserRequest{
+		Email:    "john@gmail.com",
+		Password: "1234",
+	}
 
-	total, apperr := userService.Checkout()
+	res, apperr := userService.Create(createNewUserReq)
 	if apperr != nil {
-		panic(fmt.Sprintf("Failed to checkout: %v", err))
+		panic(fmt.Sprintf("Failed to create new user: %v", apperr))
 	}
-
-	println("Total items: ")
-	for _, user := range *total {
-		println(fmt.Sprintf("Item %d: %d", user.ItemId, user.Quantity))
-	}
+	println(fmt.Sprintf("Created user: %v", res.User))
 }

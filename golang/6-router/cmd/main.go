@@ -33,11 +33,16 @@ func main() {
 			return
 		}
 
-		userService.AddUser(user.ItemId, user.Quantity)
-		c.JSON(200, gin.H{"message": "success"})
+		createdUser, err := userService.AddUser(user.ItemId, user.Quantity)
+		if err != nil {
+			c.JSON(500, err)
+			return
+		}
+
+		c.JSON(200, createdUser)
 	})
 
-	r.V1().GET("/user", func(c *gin.Context) {
+	r.V1.GET("/user", func(c *gin.Context) {
 		total, apperr := userService.Checkout()
 		if apperr != nil {
 			c.JSON(500, apperr)

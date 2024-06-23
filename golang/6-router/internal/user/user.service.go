@@ -6,7 +6,7 @@ import (
 )
 
 type Service interface {
-	AddUser(itemId int, quantity int) *apperror.AppError
+	AddUser(itemId int, quantity int) (*model.User, *apperror.AppError)
 	RemoveUser(id string) *apperror.AppError
 	Checkout() (*[]model.User, *apperror.AppError)
 }
@@ -21,18 +21,18 @@ func NewService(repo Repository) Service {
 	}
 }
 
-func (c *serviceImpl) AddUser(itemId int, quantity int) *apperror.AppError {
-	user := model.User{
+func (c *serviceImpl) AddUser(itemId int, quantity int) (*model.User, *apperror.AppError) {
+	user := &model.User{
 		ItemId:   itemId,
 		Quantity: quantity,
 	}
 
-	err := c.repo.AddUser(&user)
+	err := c.repo.AddUser(user)
 	if err != nil {
-		return apperror.InternalServerError(err.Error())
+		return nil, apperror.InternalServerError(err.Error())
 	}
 
-	return nil
+	return user, nil
 }
 
 func (c *serviceImpl) RemoveUser(id string) *apperror.AppError {

@@ -30,6 +30,7 @@ func TestUserHandler(t *testing.T) {
 func (t *UserHandlerTest) SetupTest() {
 	t.controller = gomock.NewController(t.T())
 	t.CreateUserReq = &dto.CreaterUserRequest{}
+	// t.CreateUserReq is empty because when we bind the request in the handler, the variable is also empty
 	t.User = &model.User{
 		Email:    faker.Email(),
 		Password: faker.Password(),

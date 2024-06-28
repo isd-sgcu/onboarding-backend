@@ -1,6 +1,10 @@
 # Visual Studio Code
 ## Code Navigation
 1. right click selected code -> Find all references
+2. magnifying glass icon in left tab -> Find text in files (very useful!)
+3. find text in current folder
+    - Windows: `Ctrl + Shift + F`
+    - Mac: `Cmd + Shift + F`
    
 ## Keyboard Shortcuts
 ### Openning/closing
